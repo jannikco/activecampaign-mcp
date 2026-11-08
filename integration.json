@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "status": "ready",
+  "verification": "mock-only",
+  "releaseEligible": true,
+  "maintainer": "jannikco",
+  "license": "MIT",
+  "sourceRevision": "13a1cf4b95ad4cdde7553111911ec91eeacac1271d97eb50d4a673a1e9825b91",
+  "evidence": [
+    "Source-backed provider setup metadata",
+    "Offline configuration and MCP protocol tests"
+  ],
+  "provenance": [
+    "https://dash.readme.com/api/v1/api-registry/21t7f145tmufpfc93"
+  ],
+  "id": "activecampaign-mcp",
+  "kind": "mcp-setup",
+  "product": "pipmcp",
+  "title": "ActiveCampaign MCP setup and connection checker",
+  "description": "Generate ActiveCampaign MCP client configuration, inspect available tools and validate hosted endpoint access through PipMCP.",
+  "operationIds": [],
+  "appSlug": "activecampaign",
+  "appName": "ActiveCampaign",
+  "providerDocs": "https://dash.readme.com/api/v1/api-registry/21t7f145tmufpfc93",
+  "providerWebsite": "https://www.activecampaign.com/",
+  "authentication": {
+    "type": "api_key_header",
+    "requiredCredentialFields": [
+      "api_key"
+    ],
+    "requiredHeaderNames": [],
+    "helpUrl": "https://developers.activecampaign.com/reference/authentication",
+    "tenantRequired": true,
+    "accountParameterNames": []
+  },
+  "attributionSlug": "github-activecampaign-mcp"
+}
