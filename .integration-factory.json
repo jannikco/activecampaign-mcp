@@ -1,297 +1,63 @@
 {
   "schemaVersion": 1,
+  "id": "activecampaign-mcp",
+  "kind": "provider-connector",
+  "product": "pipmcp",
+  "title": "ActiveCampaign MCP server",
+  "description": "Use ActiveCampaign with AI agents through one PipMCP API key, actual hosted schemas and governed execution.",
   "status": "ready",
   "verification": "mock-only",
   "releaseEligible": true,
+  "operationIds": [],
   "maintainer": "jannikco",
   "license": "MIT",
-  "sourceRevision": "3d6084b2f5d1754a062fe66475cf02823de9a8bc30bf538b36153dfec17e2c40",
+  "attributionSlug": "github-activecampaign-mcp",
+  "sourceRevision": "17e60b2dada347d195b82af5434046d9ae1848ac13132d059c9ceb2b877ead48",
+  "qualityVersion": 2,
+  "artifactType": "connector",
   "evidence": [
-    "Actual tools/call and direct-provider request contract tests"
+    "Gateway HTTP transport fixtures",
+    "Generated stdio wrapper discovery/call fixtures"
   ],
   "provenance": [
     "https://developers.activecampaign.com/reference/list-all-contacts",
     "https://developers.activecampaign.com/reference/create-a-new-contact"
   ],
-  "id": "activecampaign-mcp",
-  "kind": "provider-connector",
-  "product": "pipmcp",
-  "title": "ActiveCampaign MCP server",
-  "description": "Find existing marketing contacts and create a new contact record without changing subscriptions.",
-  "operationIds": [
-    "activecampaign_list_contacts",
-    "activecampaign_create_contact"
-  ],
+  "utility": {
+    "problem": "Find existing marketing contacts and create a new contact record without changing subscriptions.",
+    "output": "Actual hosted tool schemas and durable governed execution receipts"
+  },
   "appSlug": "activecampaign",
   "appName": "ActiveCampaign",
-  "providerDocs": "https://dash.readme.com/api/v1/api-registry/21t7f145tmufpfc93",
-  "providerWebsite": "https://www.activecampaign.com/",
-  "authentication": {
-    "type": "api_key_header",
-    "requiredCredentialFields": [
-      "api_key"
-    ],
-    "settings": {},
-    "requiredHeaderNames": [],
-    "helpUrl": "https://developers.activecampaign.com/reference/authentication",
-    "tenantRequired": true,
-    "accountParameterNames": []
-  },
-  "attributionSlug": "github-activecampaign-mcp",
-  "artifactType": "connector",
-  "qualityVersion": 2,
   "connectorId": "activecampaign",
-  "connector": {
-    "id": "activecampaign",
-    "name": "ActiveCampaign",
-    "version": "0.1.0",
-    "baseUrl": "https://{ACTIVECAMPAIGN_HOST}/api/3",
-    "auth": {
-      "type": "header",
-      "env": "ACTIVECAMPAIGN_API_KEY",
-      "header": "Api-Token"
-    },
-    "tools": [
-      {
-        "name": "activecampaign_list_contacts",
-        "description": "activecampaign list contacts",
-        "method": "GET",
-        "path": "/contacts",
-        "readOnly": true,
-        "inputSchema": {
-          "type": "object",
-          "properties": {
-            "limit": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100
-            },
-            "offset": {
-              "type": "integer",
-              "minimum": 0
-            }
-          },
-          "required": [],
-          "additionalProperties": false
-        },
-        "bindings": {
-          "path": [],
-          "query": {
-            "limit": "limit",
-            "offset": "offset"
-          },
-          "body": {}
-        },
-        "approvalRequired": false,
-        "provenance": [
-          "https://developers.activecampaign.com/reference/list-all-contacts",
-          "https://developers.activecampaign.com/reference/create-a-new-contact"
-        ],
-        "evidence": {
-          "state": "documented",
-          "providerLiveValidation": "not-run"
-        },
-        "sampleArguments": {
-          "limit": 5
-        }
-      },
-      {
-        "name": "activecampaign_create_contact",
-        "description": "activecampaign create contact",
-        "method": "POST",
-        "path": "/contacts",
-        "readOnly": false,
-        "inputSchema": {
-          "type": "object",
-          "properties": {
-            "email": {
-              "type": "string"
-            },
-            "firstName": {
-              "type": "string"
-            },
-            "lastName": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "email"
-          ],
-          "additionalProperties": false
-        },
-        "bindings": {
-          "path": [],
-          "query": {},
-          "body": {
-            "email": "contact.email",
-            "firstName": "contact.firstName",
-            "lastName": "contact.lastName"
-          }
-        },
-        "approvalRequired": true,
-        "provenance": [
-          "https://developers.activecampaign.com/reference/list-all-contacts",
-          "https://developers.activecampaign.com/reference/create-a-new-contact"
-        ],
-        "evidence": {
-          "state": "documented",
-          "providerLiveValidation": "not-run"
-        },
-        "sampleArguments": {
-          "email": "sandbox@example.com"
-        }
-      }
-    ],
-    "workflow": {
-      "name": "activecampaign-workflow",
-      "description": "Find existing marketing contacts and create a new contact record without changing subscriptions.",
-      "steps": [
-        "activecampaign_list_contacts",
-        "activecampaign_create_contact"
-      ]
-    },
-    "provenance": [
-      "https://developers.activecampaign.com/reference/list-all-contacts",
-      "https://developers.activecampaign.com/reference/create-a-new-contact"
-    ],
-    "sourceEvidence": {
-      "state": "documented",
-      "providerLiveValidation": "not-run",
-      "checkedAt": "2026-11-08",
-      "operationCount": 2,
-      "kind": "official-documentation"
-    },
-    "setup": {
-      "requiresPipMcpAccount": false,
-      "credentialsHelpUrl": "https://developers.activecampaign.com/reference/authentication",
-      "instructions": "In ActiveCampaign, go to Settings → Developer. Copy both your API URL and your API key; each user has their own key."
-    },
-    "hostVariables": [
-      "ACTIVECAMPAIGN_HOST"
-    ],
-    "allowedHostSuffixes": [
-      "api-us1.com",
-      "api-eu1.com"
-    ],
-    "sampleWarning": "Example IDs are placeholders, not known provider records. Replace them with authorized sandbox/account IDs. Contact emails, file URLs and recipient numbers must be replaced with data you are authorized to use. Examples never authorize a write.",
-    "repoId": "activecampaign-mcp",
-    "appSlug": "activecampaign",
-    "product": "pipmcp",
-    "artifactType": "connector",
-    "sourceRevision": "3d6084b2f5d1754a062fe66475cf02823de9a8bc30bf538b36153dfec17e2c40",
-    "capabilityEvidence": {
-      "local": {
-        "level": "Tested",
-        "operations": [
-          {
-            "name": "activecampaign_list_contacts",
-            "level": "Tested",
-            "evidenceRefs": [
-              "Provider request/stdio contract tests"
-            ],
-            "method": "contract-fixture"
-          },
-          {
-            "name": "activecampaign_create_contact",
-            "level": "Tested",
-            "evidenceRefs": [
-              "Provider request/stdio contract tests"
-            ],
-            "method": "contract-fixture"
-          }
-        ],
-        "evidenceRefs": [
-          "Provider request/stdio contract tests"
-        ],
-        "mode": "local"
-      },
-      "managed": {
-        "level": "Documented",
-        "operations": [
-          {
-            "name": "activecampaign_list_contacts",
-            "level": "Documented",
-            "evidenceRefs": [],
-            "method": "documentation"
-          },
-          {
-            "name": "activecampaign_create_contact",
-            "level": "Documented",
-            "evidenceRefs": [],
-            "method": "documentation"
-          }
-        ],
-        "evidenceRefs": [],
-        "mode": "managed"
-      }
-    },
-    "authentication": {
-      "type": "api_key_header",
-      "requiredCredentialFields": [
-        "api_key"
-      ],
-      "settings": {},
-      "requiredHeaderNames": [],
-      "helpUrl": "https://developers.activecampaign.com/reference/authentication",
-      "tenantRequired": true,
-      "accountParameterNames": []
-    },
-    "managedAvailability": {
-      "status": "import-required",
-      "integration": "openapi-to-mcp",
-      "checkedAt": "2026-11-08T12:29:10.433747+00:00"
-    }
-  },
+  "executionAuthority": "pipmcp-gateway",
+  "version": "1.0.0",
+  "agentReady": true,
   "capabilityEvidence": {
     "local": {
       "level": "Tested",
       "operations": [
         {
-          "name": "activecampaign_list_contacts",
+          "name": "gateway_transport",
           "level": "Tested",
+          "method": "contract-fixture",
           "evidenceRefs": [
-            "Provider request/stdio contract tests"
-          ],
-          "method": "contract-fixture"
-        },
-        {
-          "name": "activecampaign_create_contact",
-          "level": "Tested",
-          "evidenceRefs": [
-            "Provider request/stdio contract tests"
-          ],
-          "method": "contract-fixture"
+            "Generated gateway/stdio fixtures"
+          ]
         }
       ],
       "evidenceRefs": [
-        "Provider request/stdio contract tests"
+        "Generated gateway/stdio fixtures"
       ],
       "mode": "local"
     },
     "managed": {
       "level": "Documented",
-      "operations": [
-        {
-          "name": "activecampaign_list_contacts",
-          "level": "Documented",
-          "evidenceRefs": [],
-          "method": "documentation"
-        },
-        {
-          "name": "activecampaign_create_contact",
-          "level": "Documented",
-          "evidenceRefs": [],
-          "method": "documentation"
-        }
-      ],
+      "operations": [],
       "evidenceRefs": [],
       "mode": "managed"
     }
   },
-  "utility": {
-    "problem": "Find existing marketing contacts and create a new contact record without changing subscriptions.",
-    "output": "Actual provider API results through local MCP tools"
-  },
   "factory": "leadadapter-pipmcp",
-  "generatorVersion": 2
+  "generatorVersion": 3
 }

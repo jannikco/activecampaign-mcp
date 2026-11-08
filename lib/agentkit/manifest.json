@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "version": "1.0.0",
+  "product": "pipmcp",
+  "credential": "PIPMCP_API_KEY",
+  "skills": [
+    {
+      "name": "pipmcp-activecampaign",
+      "description": "Connect AI agents to ActiveCampaign using one PipMCP API key and actual hosted tool discovery."
+    }
+  ],
+  "files": {
+    "skills/pipmcp-activecampaign/SKILL.md": "3feffe827b74f496107bcec3129229de87c3ce105fe7c0113e662ae546bf63b5"
+  }
+}
